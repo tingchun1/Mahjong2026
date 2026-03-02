@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>花蓮專用統計-即時版</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <h1>
+          遊戲統計
+          <small style="font-size: 12px; color: #8e8e93; font-weight: normal">(即時計算版)</small>
+        </h1>
+        <button onclick="copyResults()" class="icon-btn">📊 複製結算</button>
+      </header>
+
+      <details class="setting-collapse">
+        <summary>⚙️ 設定底台金額</summary>
+        <div class="setting-content">
+          <div class="setting-grid">
+            <div class="setting-item">
+              底：<input type="number" id="base-money" value="50" oninput="liveCalc()" />
+            </div>
+            <div class="setting-item">
+              台：<input type="number" id="point-money" value="20" oninput="liveCalc()" />
+            </div>
+          </div>
+          <p class="hint">*花蓮專用</p>
+        </div>
+      </details>
+
+      <div class="summary-card">
+        <div class="player-grid">
+          <div class="player-col">
+            <input type="text" id="p1-name" value="玩家1" class="name-edit" maxlength="5" />
+            <div id="p1-total" class="big-score">0</div>
+          </div>
+          <div class="player-col">
+            <input type="text" id="p2-name" value="玩家2" class="name-edit" maxlength="5" />
+            <div id="p2-total" class="big-score">0</div>
+          </div>
+          <div class="player-col">
+            <input type="text" id="p3-name" value="玩家3" class="name-edit" maxlength="5" />
+            <div id="p3-total" class="big-score">0</div>
+          </div>
+          <div class="player-col">
+            <input type="text" id="p4-name" value="玩家4" class="name-edit" maxlength="5" />
+            <div id="p4-total" class="big-score">0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-section card">
+        <h3 class="section-title">本回合台數輸入</h3>
+        <div class="player-grid">
+          <input
+            type="text"
+            id="i1"
+            placeholder="台"
+            inputmode="numbersAndPunctuation"
+            class="score-input"
+            oninput="liveCalc()"
+          />
+          <input
+            type="text"
+            id="i2"
+            placeholder="台"
+            inputmode="numbersAndPunctuation"
+            class="score-input"
+            oninput="liveCalc()"
+          />
+          <input
+            type="text"
+            id="i3"
+            placeholder="台"
+            inputmode="numbersAndPunctuation"
+            class="score-input"
+            oninput="liveCalc()"
+          />
+          <input
+            type="text"
+            id="i4"
+            placeholder="台"
+            inputmode="numbersAndPunctuation"
+            class="score-input"
+            oninput="liveCalc()"
+          />
+        </div>
+
+        <div class="button-group">
+          <button onclick="commitRound()" class="main-btn">紀錄此回合</button>
+          <button onclick="clearInputs()" class="clear-btn">清空台數</button>
+        </div>
+      </div>
+
+      <div class="history-section card">
+        <h3 class="section-title">金額紀錄</h3>
+        <div class="log-header">
+          <span></span><span>局</span><span>P1</span><span>P2</span><span>P3</span><span>P4</span>
+        </div>
+        <div id="log-container" class="log-list"></div>
+      </div>
+
+      <footer class="danger-zone">
+        <div id="checksum-display">總和校驗: 0</div>
+        <button onclick="resetGame()" class="reset-btn">清空所有紀錄</button>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
